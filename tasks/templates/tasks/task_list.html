@@ -1,0 +1,39 @@
+<!-- tasks/templates/tasks/task_list.html -->
+<!DOCTYPE html>
+<html>
+<head>
+    <title>To do list</title>
+</head>
+<body>
+  {{ error }}
+    Hello {{ user.username }}!
+    <h1>Tasks</h1>
+    <ul>
+        {% for task in tasks %}
+        <li>
+            {% autoescape off %}
+            {{ task.title }}
+            <!-- {{ task.title} | escape} -->
+            {% endautoescape %}
+        </li>
+        {% empty %}
+        <li>
+            No tasks yet!
+        </li>
+        {% endfor %}
+    </ul>
+
+    <h2>Add a new task</h2>
+    <form action="/task_list/" method="post">
+        <!-- {% csrf_token %} -->
+        <label for="id_title">Title:</label>
+        <input id="id_title" maxlength="40" name="title" type="text" />
+        <input type="submit" value="Add task" />
+    </form>
+</body>
+
+<a href="/login/">Login</a> 
+<a href="/logout/">Logout</a>
+<a href="/register/">Register</a>
+<a href="/profile/">Profile</a>
+</html>
