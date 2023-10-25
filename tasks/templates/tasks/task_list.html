@@ -35,5 +35,9 @@
 <a href="/login/">Login</a> 
 <a href="/logout/">Logout</a>
 <a href="/register/">Register</a>
-<a href="/profile/">Profile</a>
+{% if user == "" or user == null %}
+
+{% else %}
+<a href={% url 'profile' user.id %}> Profile</a>
+{% endif %}
 </html>

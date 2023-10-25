@@ -28,15 +28,17 @@ def search(request):
     ## tasks = Task.objects.filter(title__contains=request.POST['title'])
   return render(request, 'tasks/task_list.html', {'tasks': tasks})
 
-def profile(request):
+def profile(request, user_id):
   global user
+  find = User.objects.filter(id=user_id).first()
   ## if request.user.id == user_id:
   ##   user = User.objects.filter(id=user_id).first()
   ##   return render(request, 'tasks/profile.html', {'user': user})
   ## else:
   ##   return HttpResponseForbidden("You are not authorized to view this page")
 
-  return render(request, 'tasks/profile.html', {'user': user})
+  return render(request, 'tasks/profile.html', {'user': find})
+
 
 @csrf_exempt
 def login(request):
