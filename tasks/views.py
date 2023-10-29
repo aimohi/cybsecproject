@@ -56,6 +56,29 @@ def login(request):
 @csrf_exempt
 def register(request):
   if request.method == 'POST':
+    username = request.POST['username']
+    password = request.POST['password']
+    password2 = request.POST['password2']
+    ##if username == '' or password == '':
+    ##  return render(request, 'tasks/register.html', {'error': 'Username or password cannot be empty'})
+    ##elif username == password:
+    ##  return render(request, 'tasks/register.html', {'error': 'Username and password cannot be the same'})
+    ##elif username == 'admin':
+    ##  return render(request, 'tasks/register.html', {'error': 'Username cannot be admin'})
+    ##elif len(password) < 8:
+    ##  return render(request, 'tasks/register.html', {'error': 'Password must be at least 8 characters'})
+    ##elif not any(char.isdigit() for char in password):
+    ##  return render(request, 'tasks/register.html', {'error': 'Password must contain at least one number'})
+    ##elif not any(char.isupper() for char in password):
+    ##  return render(request, 'tasks/register.html', {'error': 'Password must contain at least one uppercase letter'})
+    ##elif not any(char.islower() for char in password):
+    ##  return render(request, 'tasks/register.html', {'error': 'Password must contain at least one lowercase letter'})
+    ##elif password in ['password', 'Password', '12345678', 'qwertyuiop', 'asdfghjkl', 'zxcvbnm']:
+    ##  return render(request, 'tasks/register.html', {'error': 'Password is too common'})
+    ##elif username in ['admin', 'root', 'administrator']:
+    ##  return render(request, 'tasks/register.html', {'error': 'Username is too common'})
+    ##if password != password2:
+    ##  return render(request, 'tasks/register.html', {'error': 'Passwords do not match'})
     user = User.objects.filter(username=request.POST['username']).first()
     if user:
       return render(request, 'tasks/register.html', {'error': 'Username already exists'})
